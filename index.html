@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFA: Derivatives in Agrotech - Fertilizer Efficiency</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
+
+    <header class="bg-gradient-to-r from-emerald-800 to-teal-700 text-white py-12 px-6 shadow-lg text-center">
+        <span class="bg-emerald-600/50 text-emerald-200 text-xs uppercase tracking-widest font-bold px-3 py-1 rounded-full border border-emerald-500/30">
+            SFA: Agrotechnology Program
+        </span>
+        <h1 class="text-3xl font-extrabold mt-3 tracking-tight md:text-4xl">
+            Application of Derivatives in Bioscience
+        </h1>
+        <p class="mt-2 text-emerald-100 max-w-xl mx-auto text-sm md:text-base">
+            Optimizing Oil Palm Fertilizer Uptake Rates using Calculus to Prevent Nutrient Leaching in Malaysian Soils.
+        </p>
+    </header>
+
+    <main class="max-w-4xl mx-auto my-10 p-6 md:p-8 bg-white rounded-2xl shadow-xl space-y-8">
+        
+        <section class="bg-slate-50 p-6 rounded-xl border border-slate-200/60">
+            <h2 class="text-xl font-bold text-emerald-900 flex items-center gap-2 mb-3">
+                <span class="w-2 h-6 bg-emerald-600 rounded"></span>
+                1. Bioscience Problem & Malaysian Context
+            </h2>
+            <div class="text-slate-700 space-y-3 text-sm md:text-base leading-relaxed text-justify">
+                <p>
+                    In Malaysia, oil palm plantations cover over 5.8 million hectares. Fertilizer application accounts for up to <strong>60% of plantation operating costs</strong>. A primary challenge for local agrotechnologists is minimizing nutrient leaching into water catchments due to high equatorial rainfall.
+                </p>
+                <p>
+                    When nitrogen-based fertilizer is applied to the soil, the absolute amount of nutrient absorbed by the root system fluctuates. By finding the <strong>derivative (rate of change)</strong> of this nutrient absorption curve, smart-farming systems can detect the exact hour the plant achieves its peak metabolic processing speed. This ensures precise, data-driven irrigation and secondary treatment schedules.
+                </p>
+                <p class="text-xs text-slate-500 italic pt-2 border-t border-slate-200">
+                    Data Model Reference: Simulated based on real agronomic absorption patterns documented by the Malaysian Palm Oil Board (MPOB) Fertilizer Advisory Guidelines.
+                </p>
+            </div>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-4">
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-xs md:text-sm shadow-inner">
+                <span class="text-emerald-400 font-bold block mb-2">// Base Function: Total Nutrient Absorption</span>
+                <p class="text-white text-base font-bold my-2">f(t) = -0.5t³ + 6t² + 10t</p>
+                <p class="text-slate-400 text-xs">
+                    Where:<br>
+                    • <strong>f(t)</strong> = Accumulated Nitrogen in roots (mg/g)<br>
+                    • <strong>t</strong> = Time in Days (Range: Day 0 to Day 10)
+                </p>
+            </div>
+            
+            <div class="bg-slate-900 text-slate-100 p-5 rounded-xl font-mono text-xs md:text-sm shadow-inner">
+                <span class="text-amber-400 font-bold block mb-2">// Derivative Function: Absorption Velocity</span>
+                <p class="text-white text-base font-bold my-2">f'(t) = df/dt = -1.5t² + 12t + 10</p>
+                <p class="text-slate-400 text-xs">
+                    Where:<br>
+                    • <strong>f'(t)</strong> = Instananeous rate of absorption (mg/g/day)<br>
+                    • Calculated mathematically using the power rule.
+                </p>
+            </div>
+        </section>
+
+        <section class="space-y-4">
+            <h2 class="text-xl font-bold text-emerald-900 flex items-center gap-2">
+                <span class="w-2 h-6 bg-emerald-600 rounded"></span>
+                2. Interactive Live Simulation Model
+            </h2>
+            <p class="text-xs md:text-sm text-slate-600">
+                💡 <strong>Instructions:</strong> Hover or click on any specific data point along the line chart below to process the calculus engine and extract live layman analytical insights for that day.
+            </p>
+            
+            <div class="relative w-full h-80 md:h-96 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <canvas id="agrotechChart"></canvas>
+            </div>
+        </section>
+
+        <section id="feedback-panel" class="p-5 bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-xl shadow-md transition-all duration-300 transform">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h3 class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Calculus Calculus Engine State</h3>
+                    <p id="selected-day" class="text-lg font-bold mt-1 text-slate-100">Showing Global Baseline Summary</p>
+                </div>
+                <div class="bg-emerald-600/20 border border-emerald-500/30 px-4 py-2 rounded-lg text-center min-w-[140px]">
+                    <span class="text-[10px] uppercase text-emerald-300 block">Rate of Change f'(t)</span>
+                    <span id="derivative-value" class="text-xl font-black text-white">--</span>
+                </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-700/60 text-sm text-slate-300 leading-relaxed" id="layman-explanation">
+                Click any node on the line chart above to calculate the instantaneous rate of fertilizer consumption. Optimization theory dictates that the point where f'(t) is maximized represents peak efficiency.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center pb-12 pt-4 text-xs text-slate-400">
+        © 2026 Faculty of Agro-Based Industry. Configured for SFA Public Presentation Requirements.
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('agrotechChart').getContext('2d');
+        
+        // Generate realistic data array across 11 key milestones (Day 0 to Day 10)
+        const timelineDays = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        
+        // Equation array generation f(t)
+        const totalAccumulationData = timelineDays.map(t => (-0.5 * Math.pow(t, 3)) + (6 * Math.pow(t, 2)) + (10 * t));
+        
+        // Derivative array generation f'(t)
+        const derivativeVelocityData = timelineDays.map(t => (-1.5 * Math.pow(t, 2)) + (12 * t) + 10);
+
+        // Layman insights mapping database
+        const insightsDB = {
+            0: "The fertilizer has just been dropped onto the volcanic clay soil. Root initialization is starting slowly at a positive net velocity.",
+            1: "Nutrient breakdown begins. Root hairs are waking up, increasing consumption velocity rapidly as nitrogen liquefies.",
+            2: "The plant is showing highly accelerated consumption behavior. Osmotic pressure in the vascular system is building.",
+            3: "Phenomenal root engagement! The absorption rate is climbing skyward as metabolic processing pathways operate optimally.",
+            4: "<strong>CRITICAL PEAK OBSERVED!</strong> The derivative reaches its maximum velocity state. Today, the root cell walls are sucking up fertilizer at the fastest speed possible.",
+            5: "The rate of change is still high but starting to decelerate. The roots are beginning to reach safety saturation levels.",
+            6: "Deceleration continues clearly. Total nitrogen levels inside the palm are high, so the biological demand drop-off is visible.",
+            7: "Velocity is flatlining. The structural capacity of the oil palm roots to metabolize more raw compound is nearing full limit.",
+            8: "The rate of absorption has drastically dropped to a crawling speed. Applying more fertilizer today will result in pure wasteful environmental runoff.",
+            9: "Absorption speed is almost dead zero. The crop has extracted virtually everything it physically can handle from this cycle.",
+            10: "The derivative drops into negative territory. The soil environment is depleted or root saturation has reversed, indicating total cycle expiration."
+        };
+
+        // Render Interactive Multi-Axis Chart.js Configuration
+        const agrotechChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: timelineDays.map(d => `Day ${d}`),
+                datasets: [
+                    {
+                        label: 'Total Absorbed Nitrogen f(t) (mg/g)',
+                        data: totalAccumulationData,
+                        borderColor: '#059669',
+                        backgroundColor: 'rgba(5, 150, 105, 0.05)',
+                        borderWidth: 4,
+                        pointBackgroundColor: '#059669',
+                        pointRadius: 5,
+                        pointHoverRadius: 8,
+                        fill: true,
+                        tension: 0.2,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: "Rate of Change f'(t) (mg/g/day)",
+                        data: derivativeVelocityData,
+                        borderColor: '#f59e0b',
+                        borderDash: [5, 5],
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#f59e0b',
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        tension: 0.2,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 12, weight: 'bold' } }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Total Accumulated (mg/g)', font: { weight: 'bold' } }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: { drawOnChartArea: false },
+                        title: { display: true, text: 'Absorption Velocity (mg/g/day)', font: { weight: 'bold' } }
+                    }
+                },
+                // Capture interactive point selection events
+                onClick: (event, activeElements) => {
+                    if (activeElements.length > 0) {
+                        const dataIndex = activeElements[0].index;
+                        const day = timelineDays[dataIndex];
+                        const totalAmount = totalAccumulationData[dataIndex].toFixed(2);
+                        const rateOfChange = derivativeVelocityData[dataIndex].toFixed(2);
+                        
+                        // Update DOM interface dynamically 
+                        document.getElementById('selected-day').innerText = `Selected Analytics Pipeline: Day ${day}`;
+                        document.getElementById('derivative-value').innerText = `+${rateOfChange}`;
+                        document.getElementById('layman-explanation').innerHTML = `
+                            <strong>Mathematical Status at Day ${day}:</strong> Total accumulation is <strong>${totalAmount} mg/g</strong>. 
+                            The instantaneous rate of change is <strong>${rateOfChange} mg/g/day</strong>.<br><br>
+                            <strong>Agrotechnologist Translation:</strong> ${insightsDB[day]}
+                        `;
+                        
+                        // Flash background color animation effect to signify updates
+                        const panel = document.getElementById('feedback-panel');
+                        panel.classList.add('ring-4', 'ring-emerald-500/50');
+                        setTimeout(() => panel.classList.remove('ring-4', 'ring-emerald-500/50'), 4000);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
